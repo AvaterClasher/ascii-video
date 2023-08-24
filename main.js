@@ -5,12 +5,27 @@ const density = '       .:-i|=+%O#@'
 let video;
 let asciiDiv;
 
-function setup() {
-  noCanvas();
-  video = createCapture(VIDEO);
-  video.size(200, 150);
-  asciiDiv = createDiv();
+const btn = document.querySelector('.btn');
+
+let context;
+window.onload = function() {
+  context = new AudioContext();
 }
+btn.addEventListener('click',() => {
+  context.resume().then(() => {
+    noCanvas();
+    video = createCapture(VIDEO);
+    video.size(200, 150);
+    asciiDiv = createDiv();
+  })
+})
+
+// function setup() {
+//   noCanvas();
+//   video = createCapture(VIDEO);
+//   video.size(200, 150);
+//   asciiDiv = createDiv();
+// }
 
 function draw() {
   video.loadPixels();
